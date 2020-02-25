@@ -11,30 +11,26 @@ import Foundation
 struct Pokemon: Decodable {
     let count: Int
     let next: String
-    let previous: JSONNull?
-    let results: [Result]
+    let pokeItem: [PokeListItem]
     
     enum CodingKeys: String, CodingKey {
         case count
         case next
-        case previous
-        case results
+        case pokeItem = "results"
     }
     
-    init(count: Int, next: String, previous: JSONNull?, results: [Result]) {
+    init(count: Int, next: String, pokeItem: [PokeListItem]) {
         self.count = count
         self.next = next
-        self.previous = previous
-        self.results = results
+        self.pokeItem = pokeItem
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let count: Int = try container.decode(Int.self, forKey: .count)
         let next: String = try container.decode(String.self, forKey: .next)
-        let previous: JSONNull? = try container.decode(JSONNull?.self, forKey: .previous)
-        let results: [Result] = try container.decode([Result].self, forKey: .results)
+        let pokeItem: [PokeListItem] = try container.decode([PokeListItem].self, forKey: .pokeItem)
         
-        self.init(count: count, next: next, previous: previous, results: results)
+        self.init(count: count, next: next, pokeItem: pokeItem)
     }
 }

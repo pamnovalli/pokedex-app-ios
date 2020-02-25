@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+protocol PokeListRouterDelegate: class  {
+    
+}
+
+class PokeListRouter {
+    
+    weak var delegate: PokeListRouterDelegate?
+    
+}
