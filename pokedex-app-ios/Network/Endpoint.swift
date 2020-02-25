@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class Endpoint {
+    
+    let baseUrl = "https://pokeapi.co/api/v2/"
+    
+    func createEndpoint(parameters: String) -> URL {
+        let url = URL(string: baseUrl + parameters)!
+        return url
+    }
+
+    
+}
