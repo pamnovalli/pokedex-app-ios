@@ -10,31 +10,41 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokeItemTableViewCell" id="KGk-i7-Jjw" customClass="PokeItemTableViewCell" customModule="pokedex_app_ios" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="350" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="350" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGp-mr-efL">
-                        <rect key="frame" x="20" y="24" width="310" height="21"/>
+                        <rect key="frame" x="146" y="60" width="167" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rGj-63-Hfn">
+                        <rect key="frame" x="20" y="25" width="107" height="95"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="95" id="c0K-eA-Cff"/>
+                            <constraint firstAttribute="width" constant="107" id="rfq-p4-kEV"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="YGp-mr-efL" secondAttribute="bottom" constant="55" id="9Ju-3c-I53"/>
-                    <constraint firstAttribute="trailing" secondItem="YGp-mr-efL" secondAttribute="trailing" constant="20" id="Fxa-Zy-72e"/>
-                    <constraint firstItem="YGp-mr-efL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="zA8-AQ-w0f"/>
-                    <constraint firstItem="YGp-mr-efL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="zGF-Eb-Jce"/>
+                    <constraint firstAttribute="trailing" secondItem="YGp-mr-efL" secondAttribute="trailing" constant="37" id="CAo-Gd-gl1"/>
+                    <constraint firstItem="YGp-mr-efL" firstAttribute="leading" secondItem="rGj-63-Hfn" secondAttribute="trailing" constant="19" id="CZG-Gk-GwG"/>
+                    <constraint firstAttribute="bottom" secondItem="YGp-mr-efL" secondAttribute="bottom" constant="30" id="UYA-zO-3zL"/>
+                    <constraint firstItem="rGj-63-Hfn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gxx-UE-47Q"/>
+                    <constraint firstItem="rGj-63-Hfn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="lMm-Ue-zRi"/>
+                    <constraint firstAttribute="bottom" secondItem="rGj-63-Hfn" secondAttribute="bottom" constant="25" id="sCv-PL-KlG"/>
+                    <constraint firstItem="YGp-mr-efL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="60" id="ssG-Gp-vsl"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="lblPokeItem" destination="YGp-mr-efL" id="EE8-C7-kuK"/>
             </connections>
-            <point key="canvasLocation" x="-401" y="90"/>
+            <point key="canvasLocation" x="13.043478260869566" y="79.6875"/>
         </tableViewCell>
     </objects>
 </document>
