@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct TypeElement: Decodable {
+    let slot: Int
+    let type: Species
+}
