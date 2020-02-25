@@ -9,16 +9,17 @@
 import UIKit
 
 class PokeItemTableViewCell: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var lblPokeItem: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+     func prepareForReuse(with item: PokeListItem) {
+        lblPokeItem.text = item.name
     }
+    
     
 }
