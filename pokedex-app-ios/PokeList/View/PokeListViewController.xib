@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokeListViewController" customModule="pokedex_app_ios" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="Y3F-Ez-mYv" id="iLt-Bu-Ghz"/>
+                <outlet property="tableView" destination="nLu-dy-d67" id="IZI-yT-Ckc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,20 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y3F-Ez-mYv">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nLu-dy-d67">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Y3F-Ez-mYv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Lha-iL-VZP"/>
-                <constraint firstItem="Y3F-Ez-mYv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="TAM-mH-pb6"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Y3F-Ez-mYv" secondAttribute="bottom" id="YIn-3c-zo8"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y3F-Ez-mYv" secondAttribute="trailing" id="g1B-7d-Vu8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nLu-dy-d67" secondAttribute="trailing" id="1cD-6H-xch"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nLu-dy-d67" secondAttribute="bottom" id="CCC-sa-1AZ"/>
+                <constraint firstItem="nLu-dy-d67" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rde-NM-vfY"/>
+                <constraint firstItem="nLu-dy-d67" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="xOT-Hv-AOk"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-87" y="262"/>
+            <point key="canvasLocation" x="139" y="115"/>
         </view>
     </objects>
 </document>

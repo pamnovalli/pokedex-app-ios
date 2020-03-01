@@ -2,20 +2,25 @@
 //  PokeListViewController.swift
 //  pokedex-app-ios
 //
-//  Created by Pamela Ianovalli on 24/02/20.
+//  Created by Pamela Ianovalli on 25/02/20.
 //  Copyright © 2020 Pamela Ianovalli. All rights reserved.
 //
+
 
 import UIKit
 
 class PokeListViewController: UIViewController {
     
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    
     private let presenter = PokeListPresenter()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Pokedex"
         tableView.dataSource = self
         tableView.delegate = self
         presenter.loadPokemons()
@@ -28,13 +33,13 @@ class PokeListViewController: UIViewController {
 
 extension PokeListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.pokeListItems.count 
+        return presenter.pokeListItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokeItemTableViewCell", for: indexPath) as! PokeItemTableViewCell
         let pokeItem = presenter.pokeListItems[indexPath.row]
-        cell.prepareForReuse(with: pokeItem)
+        cell.fill(with: pokeItem)
         return cell
     }
     
@@ -50,11 +55,14 @@ extension PokeListViewController: UITableViewDataSource {
 
 extension PokeListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelectPokemon(at: indexPath)
+    }
     
 }
 
 extension PokeListViewController: PokeListPresenterProtocol {
-    func didLoadpokeList() {
+    func didLoadPokeList() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

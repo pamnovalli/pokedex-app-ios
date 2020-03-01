@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PokeListRouterDelegate: class  {
     
@@ -15,5 +16,14 @@ protocol PokeListRouterDelegate: class  {
 class PokeListRouter {
     
     weak var delegate: PokeListRouterDelegate?
+    
+    var viewController = PokeListViewController.self
+    
+    
+    func navigateToPokeDetail(viewController: UIViewController, pokemon: PokeListItem){
+        let nextViewController = PokeDetailViewController(nibName: "PokeDetailViewController", bundle: Bundle.main)
+        nextViewController.presenter.pokemon = pokemon
+        viewController.navigationController?.pushViewController(nextViewController, animated: true)
+    }
     
 }

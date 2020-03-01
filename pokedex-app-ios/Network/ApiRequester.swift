@@ -35,9 +35,9 @@ extension Result where Success == Data {
 class APiRequester {
     
     
-    func request(url: URL, onComplete: @escaping (Result<Data, Error>) -> Void) {
+    func request(url: URL, onComplete: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             if  error != nil {
                 onComplete(.failure(error!))
@@ -58,7 +58,10 @@ class APiRequester {
                 onComplete(.success(data))
             }
             
-        }.resume()
+        }
+        
+        task.resume()
+        return task
     }
     
 }

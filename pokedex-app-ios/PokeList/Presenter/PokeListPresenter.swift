@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol PokeListPresenterProtocol {
-    func didLoadpokeList()
+    func didLoadPokeList()
 }
 
 class PokeListPresenter {
@@ -36,6 +37,17 @@ class PokeListPresenter {
     func loadPokemons() {
         interactor.loadPokemons(page: currentPage)
     }
+    
+    func didSelectPokemon(at indexPath: IndexPath) {
+        
+        guard let pokeListViewController = delegate as? UIViewController else {
+            return
+        }
+        
+        let pokemon = pokeListItems[indexPath.row]
+        router.navigateToPokeDetail(viewController: pokeListViewController, pokemon: pokemon)
+    }
+    
 }
 
 extension PokeListPresenter: PokeListInteractorDelegate {
@@ -45,7 +57,7 @@ extension PokeListPresenter: PokeListInteractorDelegate {
         self.pokemon = pokemon
         self.pokeListItems += pokemon.pokeItem
         self.total = pokemon.count
-        self.delegate?.didLoadpokeList() 
+        self.delegate?.didLoadPokeList() 
     }
     
 }

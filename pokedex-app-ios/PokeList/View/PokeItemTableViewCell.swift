@@ -7,19 +7,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PokeItemTableViewCell: UITableViewCell {
     
-    
-    @IBOutlet weak var lblPokeItem: UILabel!
+   @IBOutlet weak var lblPokeItem: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-     func prepareForReuse(with item: PokeListItem) {
-        lblPokeItem.text = item.name
+    func fill(with item: PokeListItem) {
+        lblPokeItem.text = item.name.capitalized
     }
-    
-    
 }
