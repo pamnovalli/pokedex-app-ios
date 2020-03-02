@@ -1,6 +1,8 @@
 # pokedex-app-ios :iphone: :apple:
 
-## **Architeture** [Blue]
+<span style="color:blue">## **Architeture** </span>
+
+## **Architeture** 
 
 Pokedex app was developed using viper architecture, following the principles of _**clean architecture**_ :heart: .
 
