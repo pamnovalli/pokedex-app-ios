@@ -6,11 +6,11 @@ Pokedex app was developed using Viper architecture, following the principles of 
 
 **Viper**:
 
-<p> **V**iew ->  <p>
-<p> **I**nteractor -> <p>
-<p> **P**resenter -> <p>
-<p> **E**ntity -> <p>
-<p> **R**outer -> <p>
+**V**iew ->  <p>
+**I**nteractor -> <p>
+**P**resenter -> <p>
+**E**ntity -> <p>
+**R**outer -> <p>
 
 ## Project Features
 
