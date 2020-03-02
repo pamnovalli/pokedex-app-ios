@@ -1,6 +1,6 @@
 # pokedex-app-ios :iphone: :apple:
 
-<span style="color:blue">## **Architeture** </span>
+<h2 style="color:blue"> **Architeture** </h2>
 
 ## **Architeture** 
 
