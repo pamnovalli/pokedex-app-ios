@@ -12,7 +12,6 @@ protocol PokeDetailPresenterProtocol {
     func didLoadPokeDetail()
 }
 
-
 class PokeDetailPresenter {
     
     var pokemon: PokeListItem?
@@ -20,6 +19,7 @@ class PokeDetailPresenter {
     let interactor = PokeDetailInteractor()
     var pokeDetail: PokeDetail?
     var pokeImages: [String] = []
+    var pokeName: String = ""
     
     init() {
         setup()
@@ -27,9 +27,7 @@ class PokeDetailPresenter {
     
     private func setup() {
         interactor.delegate = self
-        
     }
-    
     
     func loadPokeDetail() {
         if let pokemon = pokemon {

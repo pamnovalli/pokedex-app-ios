@@ -11,9 +11,7 @@ import UIKit
 
 class PokeListViewController: UIViewController {
     
-    
     @IBOutlet weak var tableView: UITableView!
-    
     
     private let presenter = PokeListPresenter()
     
@@ -51,7 +49,6 @@ extension PokeListViewController: UITableViewDataSource {
     }
     
 }
-
 
 extension PokeListViewController: UITableViewDelegate {
     
