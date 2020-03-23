@@ -34,10 +34,7 @@ class PokeDetailPresenter {
             interactor.loadPokeDetails(pokeName: pokemon.name)
         }
     }
-    
-    func cancelTask() {
-        interactor.cancelTask()
-    }
+
 }
 
 extension PokeDetailPresenter: PokeDetailInteractorProtocol {

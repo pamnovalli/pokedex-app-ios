@@ -22,7 +22,6 @@ class PokeListPresenter {
     var pokeListItems: [PokeListItem] = []
     var delegate: PokeListPresenterProtocol?
     var currentPage = 0
-    var loadingPokemons = false
     var total = 0
 
     init() {
@@ -53,7 +52,6 @@ class PokeListPresenter {
 extension PokeListPresenter: PokeListInteractorDelegate {
     
     func didLoadPokeList(pokemon: Pokemon) {
-        self.loadingPokemons = true
         self.pokemon = pokemon
         self.pokeListItems += pokemon.pokeItem
         self.total = pokemon.count

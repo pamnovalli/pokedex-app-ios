@@ -11,7 +11,7 @@ import Foundation
 class PokeListService {
     
     private let endpoint = Endpoint()
-    private let requester = APiRequester()
+    private let api = APiRequester()
     private let parameter = "pokemon/"
     private let limit = 50
 
@@ -20,7 +20,7 @@ class PokeListService {
         let offset = page * limit
         let parameters = parameter + "?limit=\(limit)&offset=\(offset)"
         let url = endpoint.createEndpoint(parameters: parameters)
-        requester.request(url: url) { (data: Result<Data, Error>) in
+        api.request(url: url) { (data: Result<Data, Error>) in
             guard let pokeData: Pokemon = try? data.decoded() else {
                 onComplete(nil)
                 return

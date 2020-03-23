@@ -12,15 +12,15 @@ class PokeDetailService {
     
     
     private let endpoint = Endpoint()
-    private let requester = APiRequester()
+    private let api = APiRequester()
     private let parameter = "pokemon/"
     private let limit = 50
     
     
-    func loadPokeDetails(pokeName: String, onComplete: @escaping (PokeDetail?) -> Void) -> URLSessionDataTask {
+    func loadPokeDetails(pokeName: String, onComplete: @escaping (PokeDetail?) -> Void) {
         let parameters = parameter + "\(pokeName)/"
         let url = endpoint.createEndpoint(parameters: parameters)
-        return requester.request(url: url) { (data: Result<Data, Error>) in
+        api.request(url: url) { (data: Result<Data, Error>) in
             guard let pokeData: PokeDetail = try? data.decoded() else {
                 onComplete(nil)
                 return

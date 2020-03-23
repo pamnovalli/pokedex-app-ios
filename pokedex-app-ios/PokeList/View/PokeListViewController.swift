@@ -21,10 +21,15 @@ class PokeListViewController: UIViewController {
         title = "Pokedex"
         tableView.dataSource = self
         tableView.delegate = self
-        presenter.loadPokemons()
         presenter.delegate = self
         tableView.register(UINib(nibName: "PokeItemTableViewCell", bundle: nil), forCellReuseIdentifier: "PokeItemTableViewCell")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if presenter.pokeListItems.isEmpty {
+             presenter.loadPokemons()
+        }
     }
     
 }
@@ -42,7 +47,7 @@ extension PokeListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == presenter.pokeListItems.count - 10 && !presenter.loadingPokemons && presenter.pokeListItems.count != presenter.total {
+        if indexPath.row == presenter.pokeListItems.count - 10 &&  presenter.pokeListItems.count != presenter.total {
             presenter.currentPage += 1
             presenter.loadPokemons()
         }

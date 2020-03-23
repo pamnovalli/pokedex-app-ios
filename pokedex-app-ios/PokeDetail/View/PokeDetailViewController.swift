@@ -18,6 +18,10 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet weak var lblWeight: UILabel!
     @IBOutlet weak var stackAbilities: UIStackView!
     
+    @IBOutlet weak var lblAtack: UILabel!
+    @IBOutlet weak var lblDefense: UILabel!
+    @IBOutlet weak var lblSpeed: UILabel!
+    
     
     
     let presenter = PokeDetailPresenter()
@@ -32,11 +36,6 @@ class PokeDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         presenter.loadPokeDetail()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter.cancelTask()
     }
 
 }
@@ -74,6 +73,9 @@ extension PokeDetailViewController: PokeDetailPresenterProtocol {
                 self.stackAbilities.addArrangedSubview(label)
             }
         self.lblWeight.text = String(pokemon.weight)
+        self.lblSpeed.text = String(pokemon.stats[0].baseStat)
+        self.lblDefense.text = String(pokemon.stats[3].baseStat)
+        self.lblAtack.text = String(pokemon.stats[4].baseStat)
         self.collectionView.reloadData()
         }
     }
