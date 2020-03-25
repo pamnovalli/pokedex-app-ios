@@ -34,6 +34,7 @@
 		B356D6F8240367850063729E /* pokedex_app_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B356D6F7240367850063729E /* pokedex_app_iosTests.swift */; };
 		B356D703240367850063729E /* pokedex_app_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B356D702240367850063729E /* pokedex_app_iosUITests.swift */; };
 		B356D711240370C30063729E /* InitialRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B356D710240370C30063729E /* InitialRouter.swift */; };
+		B38646AD242AF0E600E2EA84 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38646AC242AF0E600E2EA84 /* NavigationBar.swift */; };
 		B3CAEA3C2404444600385123 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CAEA3B2404444600385123 /* Pokemon.swift */; };
 		B3CAEA3E2404446D00385123 /* PokeListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CAEA3D2404446D00385123 /* PokeListItem.swift */; };
 		B3CAEA432404479700385123 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CAEA422404479700385123 /* Endpoint.swift */; };
@@ -102,6 +103,7 @@
 		B356D702240367850063729E /* pokedex_app_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokedex_app_iosUITests.swift; sourceTree = "<group>"; };
 		B356D704240367850063729E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B356D710240370C30063729E /* InitialRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialRouter.swift; sourceTree = "<group>"; };
+		B38646AC242AF0E600E2EA84 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		B3CAEA3B2404444600385123 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		B3CAEA3D2404446D00385123 /* PokeListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeListItem.swift; sourceTree = "<group>"; };
 		B3CAEA422404479700385123 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				B356D6E9240367850063729E /* Assets.xcassets */,
 				B356D6EE240367850063729E /* Info.plist */,
 				B356D710240370C30063729E /* InitialRouter.swift */,
+				B38646AC242AF0E600E2EA84 /* NavigationBar.swift */,
 			);
 			path = "pokedex-app-ios";
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				B346B7D02405C5D00025BD94 /* PokeDetailInteractor.swift in Sources */,
 				B346B7A824057B470025BD94 /* TypeElement.swift in Sources */,
 				B356D6E1240367830063729E /* AppDelegate.swift in Sources */,
+				B38646AD242AF0E600E2EA84 /* NavigationBar.swift in Sources */,
 				B346B79C24057A560025BD94 /* Species.swift in Sources */,
 				B346B7BA2405AB9C0025BD94 /* PokeListRouter.swift in Sources */,
 				B3CAEA5A2404AC7600385123 /* PokeItemTableViewCell.swift in Sources */,

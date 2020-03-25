@@ -23,7 +23,7 @@ class PokeListViewController: UIViewController {
         tableView.delegate = self
         presenter.delegate = self
         tableView.register(UINib(nibName: "PokeItemTableViewCell", bundle: nil), forCellReuseIdentifier: "PokeItemTableViewCell")
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
