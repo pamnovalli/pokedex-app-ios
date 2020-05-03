@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NavigationBar {
+class NavigationController: UINavigationController {
     
     func setupNavigation(){
         UINavigationBar.appearance().tintColor = UIColor.init(displayP3Red: 254/255.0, green: 202/255.0, blue: 27/255.0, alpha: 1)

@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum RequestError: Error {
+    case serverError
+}
+
 enum Result<Success, Error: Swift.Error> {
     case success(Success)
     case failure(Error)
@@ -32,30 +36,22 @@ extension Result where Success == Data {
     }
 }
 
-class APiRequester {
+class APiRequester: Requestable {
     
     
-    func request(url: URL, onComplete: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
+    func request(url: URLRequest, onComplete: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if  error != nil {
-                onComplete(.failure(error!))
-                print("Client error!")
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("Server error!")
-                return
-            }
-            
-            
-            if httpResponse.statusCode == 200 {
+            guard let response = response as? HTTPURLResponse else { return }
+            switch response.statusCode {
+            case 200:
                 guard let data = data else {
                     return
                 }
                 onComplete(.success(data))
+            default:
+                guard let error = error else { return }
+                onComplete(.failure(error))
             }
             
         }
