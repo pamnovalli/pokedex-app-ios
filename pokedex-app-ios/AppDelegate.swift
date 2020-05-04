@@ -11,13 +11,14 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    private var router: InitialRouter?
-    private var navigation = NavigationBar()
+    private var initialRouter: InitialRouter?
+    private var navigation: NavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        navigation.setupNavigation()
-        router = InitialRouter(window: .init(), navigator: .init())
-        router?.start()
+        navigation = NavigationController()
+        navigation?.setupNavigation()
+        initialRouter = InitialRouter()
+        initialRouter?.start()
         return true
     }
 

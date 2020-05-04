@@ -7,26 +7,38 @@
 //
 
 import Foundation
+import UIKit
 
-protocol PokeDetailPresenterProtocol {
-    func didLoadPokeDetail()
+protocol PokeDetailPresenterDelegate: AnyObject {
+    func updatePokeDetail()
+    func setTitle(pokeName: String)
+    func setHeight(height: String)
+    func setWeight(weight: String)
+    func setType(type: String)
+    func setSpeed(speed: String)
+    func setDefence(defence: String)
+    func setAttack(attack: String)
+    func setAbilities(abilities: [String])
 }
 
-class PokeDetailPresenter {
-    
+protocol PokeDetailPresentable: AnyObject {
+    func loadPokeDetail()
+}
+
+class PokeDetailPresenter: PokeDetailPresentable {
+    private lazy var interactor = PokeDetailInteractor(delegate: self)
+    private let router: Routerable
     var pokemon: PokeListItem?
-    var delegate: PokeDetailPresenterProtocol?
-    let interactor = PokeDetailInteractor()
-    var pokeDetail: PokeDetail?
+    weak var delegate: PokeDetailPresenterDelegate?
     var pokeImages: [String] = []
     var pokeName: String = ""
     
-    init() {
-        setup()
-    }
-    
-    private func setup() {
-        interactor.delegate = self
+    init(
+        router: PokeDetailRouter,
+        pokemon: PokeListItem
+    ) {
+        self.router = router
+        self.pokemon = pokemon
     }
     
     func loadPokeDetail() {
@@ -34,15 +46,28 @@ class PokeDetailPresenter {
             interactor.loadPokeDetails(pokeName: pokemon.name)
         }
     }
-
 }
 
-extension PokeDetailPresenter: PokeDetailInteractorProtocol {
-    func didLoadPokeDetail(pokeDetail: PokeDetail) {
-        self.pokeDetail = pokeDetail
-        self.pokeImages.append(pokeDetail.sprites.frontDefault)
-        self.pokeImages.append(pokeDetail.sprites.backDefault)
-        self.delegate?.didLoadPokeDetail()
+extension PokeDetailPresenter: PokeDetailInteractorDelegate {
+    func didLoadPokeDetail(pokemon: PokeDetail) {
+        DispatchQueue.main.async{
+            var abilities = [String]()
+            for pokemon in pokemon.abilities {
+                abilities.append(pokemon.ability.name.capitalized)
+            }
+            self.delegate?.setTitle(pokeName: pokemon.name.capitalized)
+            self.delegate?.setHeight(height: String(pokemon.height))
+            self.delegate?.setType(type: pokemon.types[0].type.name.capitalized)
+            self.delegate?.setWeight(weight: String(pokemon.weight))
+            self.delegate?.setSpeed(speed: String(pokemon.stats[0].baseStat))
+            self.delegate?.setDefence(defence: String(pokemon.stats[3].baseStat))
+            self.delegate?.setAttack(attack: String(pokemon.stats[4].baseStat))
+            self.delegate?.setAbilities(abilities: abilities)
+            
+            self.pokeImages.append(pokemon.sprites.frontDefault)
+            self.pokeImages.append(pokemon.sprites.backDefault)
+            self.delegate?.updatePokeDetail()
+            
+        }
     }
-    
 }

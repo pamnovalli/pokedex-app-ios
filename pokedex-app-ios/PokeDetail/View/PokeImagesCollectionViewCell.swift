@@ -10,15 +10,15 @@ import UIKit
 import Kingfisher
 
 class PokeImagesCollectionViewCell: UICollectionViewCell {
-    
-    
-    @IBOutlet weak var imgPokemon: UIImageView!
+
+    @IBOutlet private weak var imgPokemon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func prepareForReuse(with pokeImage: String) {        
-        imgPokemon.kf.setImage(with: URL(string: pokeImage)!)
+    func prepareForReuse(with pokeImage: String) {
+        guard let image = URL(string: pokeImage) else { return }
+        imgPokemon.kf.setImage(with: image)
     }
 }

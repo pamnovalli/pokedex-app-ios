@@ -6,15 +6,20 @@
 //  Copyright © 2020 Pamela Ianovalli. All rights reserved.
 //
 
-
 import UIKit
 
 class PokeListViewController: UIViewController {
+    @IBOutlet private weak var tableView: UITableView!
+    private let presenter: PokeListPresenter
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    private let presenter = PokeListPresenter()
-    
+    init(presenter: PokeListPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,18 +61,15 @@ extension PokeListViewController: UITableViewDataSource {
 }
 
 extension PokeListViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.didSelectPokemon(at: indexPath)
+        presenter.didSelectPokemon(at: indexPath.row)
     }
-    
 }
 
-extension PokeListViewController: PokeListPresenterProtocol {
+extension PokeListViewController: PokeListPresenterDelegate {
     func didLoadPokeList() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
 }

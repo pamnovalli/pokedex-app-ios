@@ -8,15 +8,24 @@
 
 import Foundation
 
-protocol PokeListInteractorDelegate: class {
+protocol PokeListInteractorDelegate: AnyObject {
     func didLoadPokeList(pokemon: Pokemon)
 }
 
-class PokeListInteractor {
+protocol PokeListInteractorProtocol: AnyObject {
+    func loadPokemons(page: Int)
+}
+
+class PokeListInteractor: PokeListInteractorProtocol {
+    private let service: PokeListService
+    private weak var delegate: PokeListInteractorDelegate?
     
-    private let service = PokeListService()
-    
-    weak var delegate: PokeListInteractorDelegate?
+    init(service: PokeListService = PokeListService(),
+        delegate: PokeListInteractorDelegate
+    ) {
+        self.service = service
+        self.delegate = delegate
+    }
     
     func loadPokemons(page: Int) {
         service.loadPokemons(page: page) { (pokeData) in

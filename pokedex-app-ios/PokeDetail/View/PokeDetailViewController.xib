@@ -17,7 +17,7 @@
                 <outlet property="lblSpeed" destination="kXk-Vb-M2Z" id="nnX-bJ-uTs"/>
                 <outlet property="lblType" destination="LDN-9y-CR7" id="hkE-4z-TK5"/>
                 <outlet property="lblWeight" destination="SWa-VM-IAv" id="IO3-Bu-LJS"/>
-                <outlet property="stackAbilities" destination="NQP-Ow-zVG" id="nV7-q4-VEp"/>
+                <outlet property="stackAbilities" destination="NQP-Ow-zVG" id="Ysc-fo-43K"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

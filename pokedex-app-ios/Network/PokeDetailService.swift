@@ -9,25 +9,21 @@
 import Foundation
 
 class PokeDetailService {
-    
-    
     private let endpoint = Endpoint()
-    private let api = APiRequester()
+    private let requester = Requester()
     private let parameter = "pokemon/"
     private let limit = 50
     
-    
     func loadPokeDetails(pokeName: String, onComplete: @escaping (PokeDetail?) -> Void) {
         let parameters = parameter + "\(pokeName)/"
-        let url = endpoint.createEndpoint(parameters: parameters)
-        api.request(url: url) { (data: Result<Data, Error>) in
+        guard let url = endpoint.createEndpoint(parameters: parameters) else { return }
+        let urlRequest = URLRequest(url: url)
+        requester.request(url: urlRequest) { (data: Result<Data, Error>) in
             guard let pokeData: PokeDetail = try? data.decoded() else {
                 onComplete(nil)
                 return
             }
             onComplete(pokeData)
         }
-        
     }
-    
 }

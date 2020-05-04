@@ -28,7 +28,6 @@ extension Result {
     }
 }
 
-
 extension Result where Success == Data {
     func decoded<T: Decodable>(using decoder: JSONDecoder = .init()) throws -> T {
         let data = try get()
@@ -36,9 +35,7 @@ extension Result where Success == Data {
     }
 }
 
-class APiRequester: Requestable {
-    
-    
+class Requester: Requestable {
     func request(url: URLRequest, onComplete: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

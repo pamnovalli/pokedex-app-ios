@@ -6,61 +6,48 @@
 //  Copyright © 2020 Pamela Ianovalli. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-
-protocol PokeListPresenterProtocol {
+protocol PokeListPresenterDelegate: AnyObject {
     func didLoadPokeList()
 }
 
-class PokeListPresenter {
-    
-    var interactor = PokeListInteractor()
-    var router = PokeListRouter()
-    var pokemon: Pokemon?
+protocol PokeListPresentable: AnyObject {
+     func loadPokemons()
+    func didSelectPokemon(at indexPath: Int)
+}
+
+class PokeListPresenter: PokeListPresentable {
+    private var router: PokeListRoutering
+    private var pokemon: Pokemon?
+    private lazy var interactor = PokeListInteractor(delegate: self)
     var pokeListItems: [PokeListItem] = []
-    var delegate: PokeListPresenterProtocol?
+    weak var delegate: PokeListPresenterDelegate?
     var currentPage = 0
     var total = 0
 
-    init() {
-        self.setup()
-    }
-    
-    private func setup() {
-        self.interactor.delegate = self
-        self.router.delegate = self
+    init(router: PokeListRoutering) {
+        self.router = router
     }
     
     func loadPokemons() {
         interactor.loadPokemons(page: currentPage)
     }
     
-    func didSelectPokemon(at indexPath: IndexPath) {
-        
-        guard let pokeListViewController = delegate as? UIViewController else {
-            return
-        }
-        
-        let pokemon = pokeListItems[indexPath.row]
-        router.navigateToPokeDetail(viewController: pokeListViewController, pokemon: pokemon)
+    func didSelectPokemon(at indexPath: Int) {
+        let pokemon = pokeListItems[indexPath]
+        router.navigateToPokeDetail(pokemon: pokemon)
     }
     
 }
 
 extension PokeListPresenter: PokeListInteractorDelegate {
-    
     func didLoadPokeList(pokemon: Pokemon) {
         self.pokemon = pokemon
         self.pokeListItems += pokemon.pokeItem
         self.total = pokemon.count
-        self.delegate?.didLoadPokeList() 
+        self.delegate?.didLoadPokeList()
     }
-    
-}
-
-extension PokeListPresenter: PokeListRouterDelegate {
     
 }
 

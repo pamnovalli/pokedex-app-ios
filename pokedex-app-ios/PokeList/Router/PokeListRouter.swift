@@ -9,21 +9,27 @@
 import Foundation
 import UIKit
 
-protocol PokeListRouterDelegate: class  {
-    
+protocol PokeListRoutering: AnyObject {
+     func navigateToPokeDetail(pokemon: PokeListItem)
 }
 
-class PokeListRouter {
+class PokeListRouter: Routerable, PokeListRoutering {
+    var navigator: UINavigationController
     
-    weak var delegate: PokeListRouterDelegate?
-    
-    var viewController = PokeListViewController.self
-    
-    
-    func navigateToPokeDetail(viewController: UIViewController, pokemon: PokeListItem){
-        let nextViewController = PokeDetailViewController(nibName: "PokeDetailViewController", bundle: Bundle.main)
-        nextViewController.presenter.pokemon = pokemon
-        viewController.navigationController?.pushViewController(nextViewController, animated: true)
+    init(navigator: UINavigationController) {
+        self.navigator = navigator
     }
     
+    func navigateToPokeDetail(pokemon: PokeListItem) {
+        let router = PokeDetailRouter(navigator: navigator, pokemon: pokemon)
+        let viewController = router.makeViewController()
+        navigator.pushViewController(viewController, animated: true)
+    }
+    
+    func makeViewController() -> UIViewController {
+        let presenter = PokeListPresenter(router: self)
+        
+        return PokeListViewController(presenter: presenter)
+    }
 }
+

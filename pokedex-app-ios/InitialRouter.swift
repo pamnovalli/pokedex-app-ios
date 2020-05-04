@@ -8,26 +8,19 @@
 
 import UIKit
 
-protocol Router {
-    var navigator: UINavigationController { get set }
-    func start()
-}
-
-class InitialRouter: Router {
+class InitialRouter {
+    private let window: UIWindow
+    private let navigator: UINavigationController
     
-    var navigator: UINavigationController
-    var window: UIWindow
-    
-    init(window: UIWindow = UIWindow(frame: UIScreen.main.bounds), navigator: UINavigationController = UINavigationController()) {
+    init(window: UIWindow = .init(frame: UIScreen.main.bounds), navigator: UINavigationController = NavigationController()) {
         self.navigator = navigator
         self.window = window
     }
     
     func start() {
-        navigator = UINavigationController(rootViewController: PokeListViewController(nibName: "PokeListViewController", bundle: Bundle.main))
+        let router = PokeListRouter(navigator: navigator)
+        navigator.viewControllers = [router.makeViewController()]
         window.rootViewController = navigator
         window.makeKeyAndVisible()
     }
-    
-    
 }

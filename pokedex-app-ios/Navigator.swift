@@ -6,4 +6,8 @@
 //  Copyright © 2020 Pamela Ianovalli. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol Routerable {
+    func makeViewController() -> UIViewController
+}

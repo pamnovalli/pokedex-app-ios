@@ -6,21 +6,29 @@
 //  Copyright © 2020 Pamela Ianovalli. All rights reserved.
 //
 
-import UIKit
+import UIKit 
 
 class PokeDetailViewController: UIViewController {
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var lblPokeName: UILabel!
+    @IBOutlet private weak var lblHeight: UILabel!
+    @IBOutlet private weak var lblType: UILabel!
+    @IBOutlet private weak var lblWeight: UILabel!
+    @IBOutlet private weak var stackAbilities: UIStackView!
+    @IBOutlet private weak var lblAtack: UILabel!
+    @IBOutlet private weak var lblDefense: UILabel!
+    @IBOutlet private weak var lblSpeed: UILabel!
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var lblPokeName: UILabel!
-    @IBOutlet weak var lblHeight: UILabel!
-    @IBOutlet weak var lblType: UILabel!
-    @IBOutlet weak var lblWeight: UILabel!
-    @IBOutlet weak var stackAbilities: UIStackView!
-    @IBOutlet weak var lblAtack: UILabel!
-    @IBOutlet weak var lblDefense: UILabel!
-    @IBOutlet weak var lblSpeed: UILabel!
+    let presenter: PokeDetailPresenter
+
+    init(presenter: PokeDetailPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    let presenter = PokeDetailPresenter()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +46,8 @@ class PokeDetailViewController: UIViewController {
 }
 
 extension PokeDetailViewController: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.pokeImages.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,37 +57,50 @@ extension PokeDetailViewController: UICollectionViewDataSource {
         cell.prepareForReuse(with: pokeImages)
         return cell
     }
-    
 }
 
+extension PokeDetailViewController: PokeDetailPresenterDelegate {
 
-extension PokeDetailViewController: PokeDetailPresenterProtocol {
+    func setSpeed(speed: String) {
+        lblSpeed.text = speed
+    }
     
+    func setDefence(defence: String) {
+        lblDefense.text = defence
+    }
     
-    func setupLabel(){
-        self.title = self.presenter.pokeDetail?.name.capitalized
-        guard let pokemon = self.presenter.pokeDetail else {return}
-        self.lblHeight.text = String(pokemon.height)
-        self.lblType.text = pokemon.types[0].type.name.capitalized
-        for pokemon in pokemon.abilities {
+    func setAttack(attack: String) {
+        lblAtack.text = attack
+    }
+    
+    func setHeight(height: String) {
+        lblHeight.text = height
+    }
+    
+    func setWeight(weight: String) {
+        lblWeight.text = weight
+    }
+    
+    func setType(type: String) {
+        lblType.text = type
+    }
+    
+    func setTitle(pokeName: String) {
+        self.title = pokeName
+    }
+    
+    func setAbilities(abilities abilitys: [String]) {
+        for ability in abilitys {
             let label = UILabel()
-            label.text = pokemon.ability.name.capitalized
+            label.text = ability
             self.stackAbilities.addArrangedSubview(label)
         }
-        self.lblWeight.text = String(pokemon.weight)
-        self.lblSpeed.text = String(pokemon.stats[0].baseStat)
-        self.lblDefense.text = String(pokemon.stats[3].baseStat)
-        self.lblAtack.text = String(pokemon.stats[4].baseStat)
     }
     
-    func didLoadPokeDetail() {
-        DispatchQueue.main.async{
-            self.setupLabel()
-            self.collectionView.reloadData()
-        }
+    func updatePokeDetail() {
+        self.collectionView.reloadData()
     }
 }
-
 
 extension PokeDetailViewController: UICollectionViewDelegate {
     

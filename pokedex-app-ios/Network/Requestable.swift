@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol Requestable {
+    func request(url: URLRequest, onComplete: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask
+}
