@@ -50,7 +50,7 @@ class PokeDetailPresenter: PokeDetailPresentable {
 
 extension PokeDetailPresenter: PokeDetailInteractorDelegate {
     func didLoadPokeDetail(pokemon: PokeDetail) {
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             var abilities = [String]()
             for pokemon in pokemon.abilities {
                 abilities.append(pokemon.ability.name.capitalized)

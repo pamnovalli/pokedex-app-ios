@@ -17,10 +17,10 @@ protocol PokeDetailInteractorProtocol: AnyObject {
 }
 
 class PokeDetailInteractor: PokeDetailInteractorProtocol {
-    private let service: PokeDetailService
+    private let service: Serviceble
     private weak var delegate: PokeDetailInteractorDelegate?
     
-    init(service: PokeDetailService = PokeDetailService(),
+    init(service: Serviceble = Service(),
          delegate: PokeDetailInteractorDelegate
     ) {
         self.service = service
@@ -28,8 +28,7 @@ class PokeDetailInteractor: PokeDetailInteractorProtocol {
     }
     
     func loadPokeDetails(pokeName: String) {
-        service.loadPokeDetails(pokeName: pokeName) { (pokeDetailData) in
-            guard let pokeDetail = pokeDetailData else {return}
+        service.loadData(object: PokeDetail.self, parameters: pokeName) { (pokeDetail) in
             self.delegate?.didLoadPokeDetail(pokemon: pokeDetail)
         }
     }

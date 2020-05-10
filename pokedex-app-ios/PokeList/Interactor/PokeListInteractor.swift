@@ -17,20 +17,23 @@ protocol PokeListInteractorProtocol: AnyObject {
 }
 
 class PokeListInteractor: PokeListInteractorProtocol {
-    private let service: PokeListService
+    private let service: Serviceble
     private weak var delegate: PokeListInteractorDelegate?
+    private let limitItens = 50
     
-    init(service: PokeListService = PokeListService(),
-        delegate: PokeListInteractorDelegate
+    init(service: Serviceble = Service(),
+         delegate: PokeListInteractorDelegate
     ) {
         self.service = service
         self.delegate = delegate
     }
     
     func loadPokemons(page: Int) {
-        service.loadPokemons(page: page) { (pokeData) in
-            guard let pokemon = pokeData else {return}
-            self.delegate?.didLoadPokeList(pokemon: pokemon)
+        let offset = page * limitItens
+        let parameters = "?limit=\(limitItens)&offset=\(offset)"
+        service.loadData(object: Pokemon.self, parameters: parameters) { (pokeList) -> Void in
+            self.delegate?.didLoadPokeList(pokemon: pokeList)
         }
     }
 }
+
