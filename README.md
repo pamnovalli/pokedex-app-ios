@@ -1,7 +1,7 @@
 # pokedex-app-ios :iphone: :apple:
 
-![Pikachu](/appImages/pikachu.png)
-Format: ![Alt Text](url)
+![Pikachu](/AppImages/pikachu.png)
+Format: ![Pikachu](url)
 
 
 ## Architeture
