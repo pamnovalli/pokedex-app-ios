@@ -13,11 +13,13 @@ struct Sprites: Decodable {
     let backShiny: String
     let frontDefault: String
     let frontShiny: String
+    let other: Other
 
     enum CodingKeys: String, CodingKey {
         case backDefault = "back_default"
         case backShiny = "back_shiny"
         case frontDefault = "front_default"
         case frontShiny = "front_shiny"
+        case other 
     }
 }

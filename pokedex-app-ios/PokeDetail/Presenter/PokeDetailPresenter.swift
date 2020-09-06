@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 
 protocol PokeDetailPresenterDelegate: AnyObject {
-    func updatePokeDetail()
-    func setTitle(pokeName: String)
-    func setHeight(height: String)
-    func setWeight(weight: String)
-    func setType(type: String)
-    func setSpeed(speed: String)
-    func setDefence(defence: String)
-    func setAttack(attack: String)
-    func setAbilities(abilities: [String])
+    func setTitle(_ pokeName: String)
+    func setHeight(_ height: String)
+    func setWeight(_ weight: String)
+    func setType(_ type: String)
+    func setSpeed(_ speed: String)
+    func setDefence(_ defence: String)
+    func setAttack(_ attack: String)
+    func setAbilities(_ abilities: [String])
+    func setImage(_ image: String)
 }
 
 protocol PokeDetailPresentable: AnyObject {
@@ -55,19 +55,15 @@ extension PokeDetailPresenter: PokeDetailInteractorDelegate {
             for pokemon in pokemon.abilities {
                 abilities.append(pokemon.ability.name.capitalized)
             }
-            self.delegate?.setTitle(pokeName: pokemon.name.capitalized)
-            self.delegate?.setHeight(height: String(pokemon.height))
-            self.delegate?.setType(type: pokemon.types[0].type.name.capitalized)
-            self.delegate?.setWeight(weight: String(pokemon.weight))
-            self.delegate?.setSpeed(speed: String(pokemon.stats[0].baseStat))
-            self.delegate?.setDefence(defence: String(pokemon.stats[3].baseStat))
-            self.delegate?.setAttack(attack: String(pokemon.stats[4].baseStat))
-            self.delegate?.setAbilities(abilities: abilities)
-            
-            self.pokeImages.append(pokemon.sprites.frontDefault)
-            self.pokeImages.append(pokemon.sprites.backDefault)
-            self.delegate?.updatePokeDetail()
-            
+            self.delegate?.setTitle(pokemon.name.capitalized)
+            self.delegate?.setHeight(String(pokemon.height))
+            self.delegate?.setType(pokemon.types[0].type.name.capitalized)
+            self.delegate?.setWeight(String(pokemon.weight))
+            self.delegate?.setSpeed(String(pokemon.stats[0].baseStat))
+            self.delegate?.setDefence(String(pokemon.stats[3].baseStat))
+            self.delegate?.setAttack(String(pokemon.stats[4].baseStat))
+            self.delegate?.setAbilities(abilities)
+            self.delegate?.setImage(pokemon.sprites.other.officialArtwork.frontDefault)
         }
     }
 }

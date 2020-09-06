@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import Kingfisher
 
 class PokeItemTableViewCell: UITableViewCell {
-    
    @IBOutlet private weak var lblPokeItem: UILabel!
     
     override func awakeFromNib() {

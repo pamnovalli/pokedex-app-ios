@@ -9,8 +9,7 @@
 import UIKit 
 
 class PokeDetailViewController: UIViewController {
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var lblPokeName: UILabel!
+    @IBOutlet private weak var pokeImage: UIImageView!
     @IBOutlet private weak var lblHeight: UILabel!
     @IBOutlet private weak var lblType: UILabel!
     @IBOutlet private weak var lblWeight: UILabel!
@@ -18,8 +17,9 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet private weak var lblAtack: UILabel!
     @IBOutlet private weak var lblDefense: UILabel!
     @IBOutlet private weak var lblSpeed: UILabel!
+    @IBOutlet private weak var statsView: UIView!
     
-    let presenter: PokeDetailPresenter
+    private let presenter: PokeDetailPresenter
 
     init(presenter: PokeDetailPresenter) {
         self.presenter = presenter
@@ -33,75 +33,82 @@ class PokeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.delegate = self
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(UINib(nibName: "PokeImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PokeImagesCollectionViewCell")
-
+        statsView.layer.cornerRadius = 5
     }
     
     override func viewDidAppear(_ animated: Bool) {
         presenter.loadPokeDetail()
     }
-    
-}
-
-extension PokeDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.pokeImages.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeImagesCollectionViewCell", for: indexPath) as! PokeImagesCollectionViewCell
-        let pokeImages = presenter.pokeImages[indexPath.item]
-        
-        cell.prepareForReuse(with: pokeImages)
-        return cell
-    }
 }
 
 extension PokeDetailViewController: PokeDetailPresenterDelegate {
+    func setImage(_ image: String) {
+        pokeImage.load(url: URL(string: image) ?? URL.init(fileURLWithPath: ""))
+    }
+    
 
-    func setSpeed(speed: String) {
+    func setSpeed(_ speed: String) {
         lblSpeed.text = speed
     }
     
-    func setDefence(defence: String) {
+    func setDefence(_ defence: String) {
         lblDefense.text = defence
     }
     
-    func setAttack(attack: String) {
+    func setAttack(_ attack: String) {
         lblAtack.text = attack
     }
     
-    func setHeight(height: String) {
+    func setHeight(_ height: String) {
         lblHeight.text = height
     }
     
-    func setWeight(weight: String) {
+    func setWeight(_ weight: String) {
         lblWeight.text = weight
     }
     
-    func setType(type: String) {
+    func setType(_ type: String) {
         lblType.text = type
     }
     
-    func setTitle(pokeName: String) {
+    func setTitle(_ pokeName: String) {
         self.title = pokeName
     }
     
-    func setAbilities(abilities abilitys: [String]) {
-        for ability in abilitys {
-            let label = UILabel()
-            label.text = ability
-            self.stackAbilities.addArrangedSubview(label)
+    func setAbilities(_ abilities: [String]) {
+        for ability in abilities {
+            let button = UIButton()
+            button.setTitle(ability, for: .normal)
+            button.backgroundColor = UIColor.random()
+            button.titleLabel?.textColor =  UIColor.white
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            button.layer.cornerRadius = 5
+            self.stackAbilities.addArrangedSubview(button)
+            self.stackAbilities.addArrangedSubview(button)
         }
-    }
-    
-    func updatePokeDetail() {
-        self.collectionView.reloadData()
     }
 }
 
-extension PokeDetailViewController: UICollectionViewDelegate {
-    
+extension UIColor {
+  static func random () -> UIColor {
+    return UIColor(
+      red: CGFloat.random(in: 0...1),
+      green: CGFloat.random(in: 0...1),
+      blue: CGFloat.random(in: 0...1),
+      alpha: 1.0)
+  }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }
