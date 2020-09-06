@@ -31,8 +31,9 @@ class PokeListInteractor: PokeListInteractorProtocol {
     func loadPokemons(page: Int) {
         let offset = page * limitItens
         let parameters = "?limit=\(limitItens)&offset=\(offset)"
-        service.loadData(object: Pokemon.self, parameters: parameters) { (pokeList) -> Void in
-            self.delegate?.didLoadPokeList(pokemon: pokeList)
+        
+        service.loadData(object: Pokemon.self, parameters: parameters) { [weak self] pokeList -> Void in
+            self?.delegate?.didLoadPokeList(pokemon: pokeList)
         }
     }
 }
