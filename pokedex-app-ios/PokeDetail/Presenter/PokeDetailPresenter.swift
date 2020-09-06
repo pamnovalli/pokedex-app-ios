@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol PokeDetailPresenterDelegate: AnyObject {
     func setTitle(_ pokeName: String)
@@ -18,30 +17,35 @@ protocol PokeDetailPresenterDelegate: AnyObject {
     func setDefence(_ defence: String)
     func setAttack(_ attack: String)
     func setAbilities(_ abilities: [String])
-    func setImage(_ image: String)
+    func setImage(_ imageUrl: URL)
+    func setStatsViewCornerRadius()
 }
 
 protocol PokeDetailPresentable: AnyObject {
-    func loadPokeDetail()
+    func viewDidLoad(delegate: PokeDetailPresenterDelegate)
 }
 
 class PokeDetailPresenter: PokeDetailPresentable {
-    private lazy var interactor = PokeDetailInteractor(delegate: self)
+    private let interactor: PokeDetailInteractorProtocol
     private let router: Routerable
-    var pokemon: PokeListItem?
-    weak var delegate: PokeDetailPresenterDelegate?
-    var pokeImages: [String] = []
-    var pokeName: String = ""
+    private var pokemon: PokeListItem?
+    private weak var delegate: PokeDetailPresenterDelegate?
     
     init(
         router: PokeDetailRouter,
-        pokemon: PokeListItem
+        pokemon: PokeListItem,
+        interactor: PokeDetailInteractorProtocol = PokeDetailInteractor()
     ) {
         self.router = router
         self.pokemon = pokemon
+        self.interactor = interactor
     }
     
-    func loadPokeDetail() {
+    func viewDidLoad(delegate: PokeDetailPresenterDelegate) {
+        self.delegate = delegate
+        
+        interactor.setDelegate(delegate: self)
+    
         if let pokemon = pokemon {
             interactor.loadPokeDetails(pokeName: pokemon.name)
         }
@@ -63,7 +67,11 @@ extension PokeDetailPresenter: PokeDetailInteractorDelegate {
             self.delegate?.setDefence(String(pokemon.stats[3].baseStat))
             self.delegate?.setAttack(String(pokemon.stats[4].baseStat))
             self.delegate?.setAbilities(abilities)
-            self.delegate?.setImage(pokemon.sprites.other.officialArtwork.frontDefault)
+            guard let url = URL(string: pokemon.sprites.other.officialArtwork.frontDefault) else {
+                return
+            }
+            self.delegate?.setImage(url)
+            self.delegate?.setStatsViewCornerRadius()
         }
     }
 }
