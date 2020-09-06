@@ -10,7 +10,6 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     private var initialRouter: InitialRouter?
     private var navigation: NavigationController?
 
@@ -21,6 +20,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initialRouter?.start()
         return true
     }
-
 }
-
