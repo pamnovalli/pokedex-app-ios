@@ -20,7 +20,7 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet private weak var statsView: UIView!
     
     private let presenter: PokeDetailPresenter
-
+    
     init(presenter: PokeDetailPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -32,20 +32,19 @@ class PokeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.delegate = self
-        statsView.layer.cornerRadius = 5
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        presenter.loadPokeDetail()
+        presenter.viewDidLoad(delegate: self)
     }
 }
 
 extension PokeDetailViewController: PokeDetailPresenterDelegate {
-    func setImage(_ image: String) {
-        pokeImage.load(url: URL(string: image) ?? URL.init(fileURLWithPath: ""))
+    func setStatsViewCornerRadius() {
+        statsView.layer.cornerRadius = 5
     }
-
+    
+    func setImage(_ imageUrl: URL) {
+        pokeImage.load(url: imageUrl)
+    }
+    
     func setSpeed(_ speed: String) {
         lblSpeed.text = speed
     }
@@ -82,7 +81,6 @@ extension PokeDetailViewController: PokeDetailPresenterDelegate {
             button.titleLabel?.textColor =  UIColor.white
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             button.layer.cornerRadius = 5
-            self.stackAbilities.addArrangedSubview(button)
             self.stackAbilities.addArrangedSubview(button)
         }
     }
