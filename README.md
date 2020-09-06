@@ -1,8 +1,8 @@
 # pokedex-app-ios :iphone: :apple:
 
-img src="https://github.com/pamnovalli/pokedex-app-ios/blob/master/AppImages/Screen%20Shot%202020-09-06%20at%2003.03.20.png"
-     alt="Markdown Monster icon"
-     style="float: left; margin-right: 10px;" />
+![Pikachu](/appImages/pikachu.png)
+Format: ![Alt Text](url)
+
 
 ## Architeture
 
