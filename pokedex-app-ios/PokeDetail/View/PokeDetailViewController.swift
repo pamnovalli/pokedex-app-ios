@@ -45,7 +45,6 @@ extension PokeDetailViewController: PokeDetailPresenterDelegate {
     func setImage(_ image: String) {
         pokeImage.load(url: URL(string: image) ?? URL.init(fileURLWithPath: ""))
     }
-    
 
     func setSpeed(_ speed: String) {
         lblSpeed.text = speed
@@ -85,30 +84,6 @@ extension PokeDetailViewController: PokeDetailPresenterDelegate {
             button.layer.cornerRadius = 5
             self.stackAbilities.addArrangedSubview(button)
             self.stackAbilities.addArrangedSubview(button)
-        }
-    }
-}
-
-extension UIColor {
-  static func random () -> UIColor {
-    return UIColor(
-      red: CGFloat.random(in: 0...1),
-      green: CGFloat.random(in: 0...1),
-      blue: CGFloat.random(in: 0...1),
-      alpha: 1.0)
-  }
-}
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
         }
     }
 }

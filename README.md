@@ -1,8 +1,6 @@
 # pokedex-app-ios :iphone: :apple:
 
-![Pikachu](/AppImages/pikachu.png)
-Format: ![Pikachu](url)
-
+![Pikachu](/ReadmeResources/pikachu.png)
 
 ## Architeture
 
@@ -19,5 +17,3 @@ Pokedex app was developed using viper architecture, following the principles of 
 ## Project Features
 
 **No Storyboards** :smiley:
-
-

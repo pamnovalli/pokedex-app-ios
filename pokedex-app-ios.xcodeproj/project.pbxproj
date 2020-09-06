@@ -11,6 +11,8 @@
 		5416E887956C9DE06B26971C /* Pods_pokedex_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9453293280CCD32BD20EC6 /* Pods_pokedex_app_ios.framework */; };
 		B31902052504AD92004EA0D9 /* DreamWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31902042504AD92004EA0D9 /* DreamWorld.swift */; };
 		B31902072504ADC9004EA0D9 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31902062504ADC9004EA0D9 /* Other.swift */; };
+		B319020A2504B987004EA0D9 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31902092504B987004EA0D9 /* UIColor+Extensions.swift */; };
+		B319020C2504B9CC004EA0D9 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B319020B2504B9CC004EA0D9 /* UIImageView+Extensions.swift */; };
 		B346B79824057A050025BD94 /* PokeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B346B79724057A050025BD94 /* PokeDetail.swift */; };
 		B346B79A24057A330025BD94 /* Ability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B346B79924057A330025BD94 /* Ability.swift */; };
 		B346B79C24057A560025BD94 /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = B346B79B24057A560025BD94 /* Species.swift */; };
@@ -77,6 +79,8 @@
 		9D7E025B75E0022C3971C3B6 /* Pods-pokedex-app-ios-pokedex-app-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokedex-app-ios-pokedex-app-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-pokedex-app-ios-pokedex-app-iosUITests/Pods-pokedex-app-ios-pokedex-app-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B31902042504AD92004EA0D9 /* DreamWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamWorld.swift; sourceTree = "<group>"; };
 		B31902062504ADC9004EA0D9 /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
+		B31902092504B987004EA0D9 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		B319020B2504B9CC004EA0D9 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		B346B79724057A050025BD94 /* PokeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDetail.swift; sourceTree = "<group>"; };
 		B346B79924057A330025BD94 /* Ability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ability.swift; sourceTree = "<group>"; };
 		B346B79B24057A560025BD94 /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
@@ -160,6 +164,15 @@
 				6E3087583A6BCAD0BFD79550 /* Pods-pokedex-app-iosTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B31902082504B966004EA0D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B31902092504B987004EA0D9 /* UIColor+Extensions.swift */,
+				B319020B2504B9CC004EA0D9 /* UIImageView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B346B7A92405A0190025BD94 /* PokeDetail */ = {
@@ -259,6 +272,7 @@
 				B356D710240370C30063729E /* InitialRouter.swift */,
 				B38646AC242AF0E600E2EA84 /* NavigationController.swift */,
 				B3932284245F3E0C003C7874 /* Navigator.swift */,
+				B31902082504B966004EA0D9 /* Extensions */,
 			);
 			path = "pokedex-app-ios";
 			sourceTree = "<group>";
@@ -580,11 +594,13 @@
 				B3932283245F3DA4003C7874 /* PokeDetailRouter.swift in Sources */,
 				B3CAEA3C2404444600385123 /* Pokemon.swift in Sources */,
 				B346B7C72405AE000025BD94 /* PokeListViewController.swift in Sources */,
+				B319020A2504B987004EA0D9 /* UIColor+Extensions.swift in Sources */,
 				B31902072504ADC9004EA0D9 /* Other.swift in Sources */,
 				B3996C13246895B60075430A /* Urls.swift in Sources */,
 				B346B7B82405AB920025BD94 /* PokeListPresenter.swift in Sources */,
 				B3932285245F3E0C003C7874 /* Navigator.swift in Sources */,
 				B346B7A224057ABF0025BD94 /* VersionGroupDetail.swift in Sources */,
+				B319020C2504B9CC004EA0D9 /* UIImageView+Extensions.swift in Sources */,
 				B346B79824057A050025BD94 /* PokeDetail.swift in Sources */,
 				B346B79A24057A330025BD94 /* Ability.swift in Sources */,
 				B346B7A624057B290025BD94 /* Stat.swift in Sources */,
