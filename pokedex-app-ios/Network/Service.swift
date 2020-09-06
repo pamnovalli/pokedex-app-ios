@@ -17,19 +17,21 @@ enum APIServiceError: Error {
 }
 
 protocol Serviceble: AnyObject {
-    func loadData<T: Decodable>(object: T.Type, parameters: String, onComplete: @escaping (T) -> Void  ) -> Void
+    func loadData<T: Decodable>(
+        object: T.Type,
+        parameters: String,
+        onComplete: @escaping (T) -> Void
+    ) -> Void
 }
 
 final class Service: Serviceble {
-    private let request: Requestable
-    
-    init(request: Requestable = Requester()) {
-        self.request = request
-    }
-    
-    func loadData<T: Decodable>(object: T.Type, parameters: String, onComplete: @escaping (T) -> Void) {
-        guard let url = request.makeURLRequest(url: parameters) else { return }
-        URLSession.shared.request(url: url) { (result) in
+    func loadData<T: Decodable>(
+        object: T.Type,
+        parameters: String,
+        onComplete: @escaping (T) -> Void) {
+        
+        guard let url = Requester.makeURLRequest(url: parameters) else { return }
+        URLSession.shared.request(url: url) { result in
             switch result {
             case .success( _):
                 do {
@@ -42,7 +44,5 @@ final class Service: Serviceble {
                 print("Api error")
             }
         }
-        
     }
-    
 }

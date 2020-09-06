@@ -9,12 +9,11 @@
 import Foundation
 
 protocol Requestable: AnyObject {
-    func makeURLRequest(url: String) -> URLRequest?
+   static func makeURLRequest(url: String) -> URLRequest?
 }
 
-class Requester: Requestable {
-    
-    func makeURLRequest(url: String) -> URLRequest? {
+final class Requester: Requestable {
+    static func makeURLRequest(url: String) -> URLRequest? {
         guard let url = URL(string: urlBase + url) else { return nil}
         return URLRequest(url: url)
     }
