@@ -8,14 +8,20 @@
 
 import UIKit
 
-class PokeItemTableViewCell: UITableViewCell {
-   @IBOutlet private weak var lblPokeItem: UILabel!
+final class PokeItemTableViewCell: UITableViewCell {
+    @IBOutlet private weak var lblPokeItem: UILabel!
+    
+    func load(presenter: PokeItemTableViewCellPresenter) {
+        presenter.cellDidLoad(self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    func fill(with item: PokeListItem) {
-        lblPokeItem.text = item.name.capitalized
+}
+
+extension PokeItemTableViewCell: PokeItemTableViewCellProtocol {
+    func setPokeName(_ name: String) {
+        lblPokeItem.text = name
     }
 }
