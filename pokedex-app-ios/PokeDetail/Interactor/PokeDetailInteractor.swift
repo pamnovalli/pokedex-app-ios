@@ -14,22 +14,25 @@ protocol PokeDetailInteractorDelegate: AnyObject {
 
 protocol PokeDetailInteractorProtocol: AnyObject {
      func loadPokeDetails(pokeName: String)
+     func setDelegate(delegate: PokeDetailInteractorDelegate) 
 }
 
 class PokeDetailInteractor: PokeDetailInteractorProtocol {
     private let service: Serviceble
     private weak var delegate: PokeDetailInteractorDelegate?
     
-    init(service: Serviceble = Service(),
-         delegate: PokeDetailInteractorDelegate
-    ) {
+    init(service: Serviceble = Service()) {
         self.service = service
+    }
+    
+    func setDelegate(delegate: PokeDetailInteractorDelegate) {
         self.delegate = delegate
     }
     
     func loadPokeDetails(pokeName: String) {
-        service.loadData(object: PokeDetail.self, parameters: pokeName) { (pokeDetail) in
-            self.delegate?.didLoadPokeDetail(pokemon: pokeDetail)
+        service.loadData(object: PokeDetail.self, parameters: pokeName) {
+            [weak self] pokeDetail in
+            self?.delegate?.didLoadPokeDetail(pokemon: pokeDetail)
         }
     }
 }
