@@ -8,11 +8,13 @@
 
 import UIKit
 
-class InitialRouter {
+final class InitialRouter {
     private let window: UIWindow
     private let navigator: UINavigationController
     
-    init(window: UIWindow = .init(frame: UIScreen.main.bounds), navigator: UINavigationController = NavigationController()) {
+    init(window: UIWindow = .init(frame: UIScreen.main.bounds),
+         navigator: UINavigationController = NavigationController()
+    ) {
         self.navigator = navigator
         self.window = window
     }
