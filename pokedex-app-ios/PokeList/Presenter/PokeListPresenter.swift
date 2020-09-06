@@ -9,36 +9,45 @@
 import UIKit
 
 protocol PokeListPresenterDelegate: AnyObject {
-    func didLoadPokeList()
+    func tableViewReloadData()
+    func setPokeListItems(_ itens: [PokeListItem])
+    func setTitle(_ title: String)
 }
 
 protocol PokeListPresentable: AnyObject {
-     func loadPokemons()
     func didSelectPokemon(at indexPath: Int)
+    func tableViewDidWillDisplay(indexPath: Int)
 }
 
 class PokeListPresenter: PokeListPresentable {
     private var router: PokeListRoutering
     private var pokemon: Pokemon?
     private lazy var interactor = PokeListInteractor(delegate: self)
-    var pokeListItems: [PokeListItem] = []
-    weak var delegate: PokeListPresenterDelegate?
-    var currentPage = 0
-    var total = 0
+    private var pokeListItems: [PokeListItem] = []
+    private weak var delegate: PokeListPresenterDelegate?
+    private var currentPage = 0
+    private var total = 0
 
     init(router: PokeListRoutering) {
         self.router = router
     }
     
-    func loadPokemons() {
+    func viewDidLoad(delegate: PokeListPresenterDelegate) {
+        self.delegate = delegate
         interactor.loadPokemons(page: currentPage)
+    }
+    
+    func tableViewDidWillDisplay(indexPath: Int) {
+        if indexPath == pokeListItems.count - 10 && pokeListItems.count != total {
+            currentPage += 1
+            interactor.loadPokemons(page: currentPage)
+        }
     }
     
     func didSelectPokemon(at indexPath: Int) {
         let pokemon = pokeListItems[indexPath]
         router.navigateToPokeDetail(pokemon: pokemon)
     }
-    
 }
 
 extension PokeListPresenter: PokeListInteractorDelegate {
@@ -46,7 +55,8 @@ extension PokeListPresenter: PokeListInteractorDelegate {
         self.pokemon = pokemon
         self.pokeListItems += pokemon.pokeItem
         self.total = pokemon.count
-        self.delegate?.didLoadPokeList()
+        self.delegate?.tableViewReloadData()
+        self.delegate?.setPokeListItems(pokeListItems)
+        self.delegate?.setTitle("Pokedex")
     }
-    
 }
