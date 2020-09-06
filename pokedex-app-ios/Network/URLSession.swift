@@ -25,18 +25,27 @@ extension Result {
 }
 
 extension Result where Success == Data {
-    func decoded<T: Decodable>(using decoder: JSONDecoder = .init()) throws -> T {
+    func decoded<T: Decodable>(using decoder: JSONDecoder = .init())
+        throws -> T {
         let data = try get()
         return try decoder.decode(T.self, from: data)
     }
 }
 
+extension URLSession: URLSessionRequestable {}
+
 protocol URLSessionRequestable: AnyObject {
-    func request(url: URLRequest, onComplete: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask
+    func request(
+        url: URLRequest,
+        onComplete: @escaping (Result<Data, Error>) -> Void
+    ) -> URLSessionDataTask
 }
 
 extension URLSessionRequestable {
-    func request(url: URLRequest, onComplete: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
+    func request(
+        url: URLRequest,
+        onComplete: @escaping (Result<Data, Error>) -> Void)
+        -> URLSessionDataTask {
         
         let dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -51,20 +60,13 @@ extension URLSessionRequestable {
                 if let data = data  {
                     onComplete(.success(data))
                 }
-                
             default:
                 guard let error = error else { return }
                 onComplete(.failure(error))
             }
-            
         }
         
         dataTask.resume()
         return dataTask
     }
 }
-
-extension URLSession: URLSessionRequestable {}
-
-
-
