@@ -16,7 +16,7 @@ protocol PokeListInteractorProtocol: AnyObject {
     func loadPokemons(page: Int)
 }
 
-class PokeListInteractor: PokeListInteractorProtocol {
+final class PokeListInteractor: PokeListInteractorProtocol {
     private let service: Serviceble
     private weak var delegate: PokeListInteractorDelegate?
     private let limitItens = 50

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PokeDetailRouter: Routerable {
+final class PokeDetailRouter: Routerable {
     let pokemon: PokeListItem
     var navigator: UINavigationController
     

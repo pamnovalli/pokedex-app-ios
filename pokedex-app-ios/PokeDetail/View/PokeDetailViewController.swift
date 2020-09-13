@@ -8,7 +8,7 @@
 
 import UIKit 
 
-class PokeDetailViewController: UIViewController {
+final class PokeDetailViewController: UIViewController {
     @IBOutlet private weak var pokeImage: UIImageView!
     @IBOutlet private weak var lblHeight: UILabel!
     @IBOutlet private weak var lblType: UILabel!
