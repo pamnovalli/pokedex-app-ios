@@ -13,7 +13,7 @@ protocol PokeListRoutering: AnyObject {
      func navigateToPokeDetail(pokemon: PokeListItem)
 }
 
-class PokeListRouter: Routerable, PokeListRoutering {
+final class PokeListRouter: Routerable, PokeListRoutering {
     var navigator: UINavigationController
     
     init(navigator: UINavigationController) {
