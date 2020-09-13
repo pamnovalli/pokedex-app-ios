@@ -21,6 +21,7 @@ final class InitialRouter {
     
     func start() {
         let router = PokeListRouter(navigator: navigator)
+        navigator.navigationBar.prefersLargeTitles = true
         navigator.viewControllers = [router.makeViewController()]
         window.rootViewController = navigator
         window.makeKeyAndVisible()
