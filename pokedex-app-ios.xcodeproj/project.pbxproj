@@ -340,6 +340,7 @@
 		B3CAEA4A24046A8900385123 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				B319020D25057D52004EA0D9 /* PokeItemTableViewCellPresenter.swift */,
 				B346B7B72405AB920025BD94 /* PokeListPresenter.swift */,
 			);
 			path = Presenter;
@@ -356,7 +357,6 @@
 		B3CAEA4E24046D1C00385123 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B319020D25057D52004EA0D9 /* PokeItemTableViewCellPresenter.swift */,
 				B3CAEA582404AC7600385123 /* PokeItemTableViewCell.swift */,
 				B3CAEA592404AC7600385123 /* PokeItemTableViewCell.xib */,
 				B346B7C52405AE000025BD94 /* PokeListViewController.swift */,
