@@ -21,11 +21,7 @@ protocol PokeDetailPresenterDelegate: AnyObject {
     func setStatsViewCornerRadius()
 }
 
-protocol PokeDetailPresentable: AnyObject {
-    func viewDidLoad(delegate: PokeDetailPresenterDelegate)
-}
-
-class PokeDetailPresenter: PokeDetailPresentable {
+final class PokeDetailPresenter {
     private let interactor: PokeDetailInteractorProtocol
     private let router: Routerable
     private var pokemon: PokeListItem?
