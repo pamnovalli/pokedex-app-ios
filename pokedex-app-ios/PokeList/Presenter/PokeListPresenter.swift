@@ -14,12 +14,7 @@ protocol PokeListPresenterDelegate: AnyObject {
     func setTitle(_ title: String)
 }
 
-protocol PokeListPresentable: AnyObject {
-    func didSelectPokemon(at indexPath: Int)
-    func tableViewDidWillDisplay(indexPath: Int)
-}
-
-class PokeListPresenter: PokeListPresentable {
+final class PokeListPresenter {
     private var router: PokeListRoutering
     private var pokemon: Pokemon?
     private lazy var interactor = PokeListInteractor(delegate: self)
@@ -34,6 +29,7 @@ class PokeListPresenter: PokeListPresentable {
     
     func viewDidLoad(delegate: PokeListPresenterDelegate) {
         self.delegate = delegate
+        delegate.setTitle("Pokedex")
         interactor.loadPokemons(page: currentPage)
     }
     
@@ -53,10 +49,9 @@ class PokeListPresenter: PokeListPresentable {
 extension PokeListPresenter: PokeListInteractorDelegate {
     func didLoadPokeList(pokemon: Pokemon) {
         self.pokemon = pokemon
-        self.pokeListItems += pokemon.pokeItem
-        self.total = pokemon.count
-        self.delegate?.tableViewReloadData()
-        self.delegate?.setPokeListItems(pokeListItems)
-        self.delegate?.setTitle("Pokedex")
+        pokeListItems += pokemon.pokeItem
+        total = pokemon.count
+        delegate?.setPokeListItems(pokeListItems)
+        delegate?.tableViewReloadData()
     }
 }
