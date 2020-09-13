@@ -26,7 +26,6 @@ final class PokeListViewController: UIViewController {
         super.viewDidLoad()
         presenter.viewDidLoad(delegate: self)
         tableView.register(UINib(nibName: "PokeItemTableViewCell", bundle: nil), forCellReuseIdentifier: "PokeItemTableViewCell")
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
@@ -58,9 +57,7 @@ extension PokeListViewController: UITableViewDelegate {
 
 extension PokeListViewController: PokeListPresenterDelegate {
     func setTitle(_ title: String) {
-        DispatchQueue.main.async {
-            self.navigationItem.title = title
-        }
+        self.title = title
     }
     
     func setPokeListItems(_ itens: [PokeListItem]) {
