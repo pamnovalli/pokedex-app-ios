@@ -17,7 +17,7 @@ protocol PokeDetailInteractorProtocol: AnyObject {
      func setDelegate(delegate: PokeDetailInteractorDelegate) 
 }
 
-class PokeDetailInteractor: PokeDetailInteractorProtocol {
+final class PokeDetailInteractor: PokeDetailInteractorProtocol {
     private let service: Serviceble
     private weak var delegate: PokeDetailInteractorDelegate?
     
