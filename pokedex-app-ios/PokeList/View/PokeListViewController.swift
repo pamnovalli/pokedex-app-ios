@@ -41,6 +41,8 @@ extension PokeListViewController: UITableViewDataSource {
         
         (cell as? PokeItemTableViewCell)?.load(presenter: presenter)
         
+        cell.accessoryType = .disclosureIndicator
+        
         return cell
     }
     
