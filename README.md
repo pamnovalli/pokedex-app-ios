@@ -1,6 +1,7 @@
 # pokedex-app-ios :iphone: :apple:
 
-![Pikachu](/ReadmeResources/pikachu.png)
+<img src="pokedex.gif" width="40%">
+
 
 ## Architeture
 
