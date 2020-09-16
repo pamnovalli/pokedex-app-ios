@@ -32,4 +32,3 @@ final class PokeListRouter: Routerable, PokeListRoutering {
         return PokeListViewController(presenter: presenter)
     }
 }
-
