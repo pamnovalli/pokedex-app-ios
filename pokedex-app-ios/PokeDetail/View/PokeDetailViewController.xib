@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -31,7 +31,6 @@
                     <rect key="frame" x="0.0" y="60" width="414" height="200"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="Ost-XH-Z87"/>
-                        <constraint firstAttribute="width" secondItem="UCR-FS-jWH" secondAttribute="height" multiplier="300:151" id="XOt-Ic-mFL"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kb-Co-m4w">
@@ -97,10 +96,10 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lv7-zr-ICX">
-                            <rect key="frame" x="16" y="132" width="382" height="308"/>
+                            <rect key="frame" x="20" y="132" width="374" height="308"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abilities:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQo-Vz-8bF">
-                                    <rect key="frame" x="0.0" y="142" width="382" height="24"/>
+                                    <rect key="frame" x="0.0" y="142" width="374" height="24"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="20"/>
                                     <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -201,7 +200,7 @@
                     <color key="backgroundColor" red="0.33812528850000001" green="0.64533382650000004" blue="0.82413893940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="dUr-bF-QKH" secondAttribute="bottom" constant="16" id="0Z3-6P-MlA"/>
-                        <constraint firstAttribute="trailing" secondItem="lv7-zr-ICX" secondAttribute="trailing" constant="16" id="5bV-SW-pRD"/>
+                        <constraint firstAttribute="trailing" secondItem="lv7-zr-ICX" secondAttribute="trailing" constant="20" id="5bV-SW-pRD"/>
                         <constraint firstItem="dUr-bF-QKH" firstAttribute="leading" secondItem="6kb-Co-m4w" secondAttribute="leading" constant="8" id="D9h-yO-rQr"/>
                         <constraint firstAttribute="trailing" secondItem="nW6-zT-zHm" secondAttribute="trailing" constant="16" id="Gf0-kj-iAq"/>
                         <constraint firstItem="nW6-zT-zHm" firstAttribute="leading" secondItem="6kb-Co-m4w" secondAttribute="leading" constant="16" id="JZL-hD-eu6"/>
@@ -209,7 +208,7 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="do3-io-X7P"/>
                         <constraint firstItem="dUr-bF-QKH" firstAttribute="top" secondItem="lv7-zr-ICX" secondAttribute="bottom" constant="16" id="fiI-En-Fk1"/>
                         <constraint firstAttribute="trailing" secondItem="dUr-bF-QKH" secondAttribute="trailing" constant="8" id="g4P-bu-cac"/>
-                        <constraint firstItem="lv7-zr-ICX" firstAttribute="leading" secondItem="6kb-Co-m4w" secondAttribute="leading" constant="16" id="kP4-mv-Zkg"/>
+                        <constraint firstItem="lv7-zr-ICX" firstAttribute="leading" secondItem="6kb-Co-m4w" secondAttribute="leading" constant="20" id="kP4-mv-Zkg"/>
                         <constraint firstItem="nW6-zT-zHm" firstAttribute="top" secondItem="6kb-Co-m4w" secondAttribute="top" constant="16" id="vDZ-B3-tyt"/>
                     </constraints>
                 </view>
