@@ -41,7 +41,7 @@ final class PokeDetailPresenter {
         self.delegate = delegate
         
         interactor.setDelegate(delegate: self)
-    
+        
         if let pokemon = pokemon {
             interactor.loadPokeDetails(pokeName: pokemon.name)
         }
@@ -62,7 +62,13 @@ extension PokeDetailPresenter: PokeDetailInteractorDelegate {
             self.delegate?.setSpeed(String(pokemon.stats[0].baseStat))
             self.delegate?.setDefence(String(pokemon.stats[3].baseStat))
             self.delegate?.setAttack(String(pokemon.stats[4].baseStat))
-            self.delegate?.setAbilities(abilities)
+            
+            if abilities.count > 1 {
+                self.delegate?.setAbilities([abilities[0], abilities[1]])
+            } else {
+                self.delegate?.setAbilities([abilities[0]])
+            }
+            
             guard let url = URL(string: pokemon.sprites.other.officialArtwork.frontDefault) else {
                 return
             }
