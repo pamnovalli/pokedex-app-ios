@@ -5,7 +5,7 @@
 
 ## Architeture
 
-Pokedex app was developed using viper architecture, following the principles of _**clean architecture**_ :heart:.
+Pokedex app was developed using viper architecture, following the principles of _**clean code**_ :heart:.
 
 **Viper**:
 
